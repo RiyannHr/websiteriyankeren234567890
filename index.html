@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website Pemesanan Makanan Online</title>
+  <style>
+    /* ======== RESET DASAR ======== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fafafa;
+    }
+
+    /* ======== CONTAINER ======== */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ======== HEADER ======== */
+    .site-header {
+      background: #ff7043;
+      color: #fff;
+      padding: 1rem 0;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .main-nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .main-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .main-nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* ======== BUTTONS ======== */
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #ff7043;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #e55b2d;
+    }
+
+    /* ======== INPUT ======== */
+    .input {
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      outline: none;
+      flex: 1;
+    }
+
+    .input:focus {
+      border-color: #ff7043;
+    }
+
+    .input-search {
+      min-width: 250px;
+    }
+
+    /* ======== CARD ======== */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-featured {
+      background: linear-gradient(135deg, #ff7043, #ff9d76);
+      color: #fff;
+      text-align: center;
+    }
+
+    .card-featured h2, 
+    .card-featured p {
+      color: #fff;
+    }
+
+    /* ======== FEATURES GRID ======== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* ======== MENU ======== */
+    .menu-section {
+      margin: 2rem 0;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+      list-style: none;
+      margin: 1rem 0;
+      padding: 0;
+    }
+
+    .menu-item {
+      background: #fff;
+      padding: 0.8rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* ======== ORDER FORM ======== */
+    .order-form {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ======== FOOTER ======== */
+    .site-footer {
+      background: #333;
+      color: #fff;
+      padding: 2rem 0;
+      margin-top: 2rem;
+    }
+
+    .site-footer h3 {
+      margin-bottom: 1rem;
+    }
+
+    .site-footer ul {
+      list-style: none;
+    }
+
+    .site-footer a {
+      color: #ff9d76;
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ======== RESPONSIVE ======== */
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      .main-nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .order-form {
+        flex-direction: column;
+      }
+
+      .input-search {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">Pemesanan Makanan Online</h1>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#fitur">Fitur</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#cara-kerja">Cara Kerja</a></li>
+          <li><a href="#pesan">Siap Pesan</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+    
+   <main class="container">
+    <section id="fitur" class="hero card card-featured">
+      <h2>Layanan pesan antar makanan</h2>
+      <p>Lihat menu, pilih makanan, dan bayar — kami antar cepat.</p>
+
+      <form class="search-form" onsubmit="return false;">
+        <input class="input input-search" type="text" placeholder="Masukan nama makanan..." aria-label="Cari makanan">
+        <button class="btn btn-primary">Cari</button>
+      </form>
+
+      <div class="features-grid">
+        <article class="card">
+          <h3>Waktu pengantaran</h3>
+          <p>Sekitar 15–30 menit tergantung wilayah.</p>
+        </article>
+        <article class="card">
+          <h3>Promo hari ini</h3>
+          <p>Diskon 25% untuk restoran pilihan.</p>
+        </article>
+        <article class="card">
+          <h3>Pembayaran</h3>
+          <p>Tunai, kartu dan dompet digital.</p>
+        </article>
+      </div>
+    </section>
+    
+    <section id="menu" class="menu-section">
+      <h2>Menu Pilihan Makanan</h2>
+      <ul class="menu-grid">
+        <li class="menu-item">Nasi Goreng — Rp. 15.000</li>
+        <li class="menu-item">Burger Ayam — Rp. 15.000</li>
+        <li class="menu-item">Nasi Padang — Rp. 20.000</li>
+        <li class="menu-item">Mie Ayam — Rp. 15.000</li>
+        <li class="menu-item">Kebab Komplit — Rp. 30.000</li>
+        <li class="menu-item">Nasi Uduk — Rp. 20.000</li>
+        <li class="menu-item">Nasi Bakar — Rp. 20.000</li>
+      </ul>
+
+      <h2>Menu Pilihan Minuman</h2>
+      <ul class="menu-grid">
+        <li class="menu-item">Es Teh Solo — Rp. 5.000</li>
+        <li class="menu-item">Es Jeruk — Rp. 5.000</li>
+        <li class="menu-item">Es Kelapa — Rp. 5.000</li>
+        <li class="menu-item">Es Krim — Rp. 10.000</li>
+        <li class="menu-item">Red Velvet — Rp. 10.000</li>
+        <li class="menu-item">Kopi Americano — Rp. 8.000</li>
+        <li class="menu-item">Es Kopi — Rp. 5.000</li>
+      </ul>
+    </section>
+    
+    <section id="cara-kerja">
+      <h2>Cara Kerja</h2>
+      <ol>
+        <li>Pilih makanan atau cari menu lain.</li>
+        <li>Tambahkan ke keranjang dan pilih metode pembayaran.</li>
+        <li>Driver menjemput dan mengantar ke alamat tujuan.</li>
+      </ol>
+    </section>
+
+    <section id="pesan" class="card">
+      <h2>Siap pesan sekarang?</h2>
+      <p>Pilih menu, masukkan alamat, dan kami kirim dalam waktu singkat.</p>
+      <form class="order-form" onsubmit="return false;">
+        <input class="input" type="text" placeholder="Masukan nama pesanan">
+        <button class="btn btn-primary">Mulai Pesan</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <h3>Referensi Desain Web</h3>
+      <ul>
+        <li><a href="https://dribbble.com/search/food" target="_blank" rel="noopener noreferrer">dribbble — food</a></li>
+        <li><a href="https://www.americanprimeco.com/" target="_blank" rel="noopener noreferrer">americanprimeco</a></li>
+        <li><a href="https://www.figma.com/community/tag/food" target="_blank" rel="noopener noreferrer">figma — food</a></li>
+        <li><a href="https://www.4rsmokehouse.com/menu/" target="_blank" rel="noopener noreferrer">4rsmokehouse — menu</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
