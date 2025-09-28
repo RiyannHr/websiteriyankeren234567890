@@ -1,0 +1,41 @@
+/* ======== RESET & GLOBAL ======== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fafafa;
+}
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+/* ======== HEADER ======== */
+.site-header { background: #ff7043; color: #fff; padding: 1rem 0; }
+.header-inner { display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+.brand { font-size:1.25rem; font-weight:bold; }
+
+/* ======== FORM & BUTTON ======== */
+.search-form { display:flex; gap:0.5rem; align-items:center; }
+.input-search { padding:.5rem; width:260px; border-radius:6px; border:1px solid #ddd; }
+.input { padding:.5rem; border-radius:6px; border:1px solid #ccc; }
+.btn { padding:.5rem .9rem; border-radius:8px; border:none; cursor:pointer; font-weight:600; }
+.btn-primary { background:#333; color:#fff; }
+.btn-primary:hover { opacity:.95; }
+
+/* ======== CONTENT ======== */
+main { padding:1.5rem 0; }
+.menu-section h2 { margin-bottom:.75rem; }
+.menu-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:.8rem; list-style:none; padding:0; }
+.menu-item {
+  background:#fff; padding:.9rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.06);
+  cursor:pointer; user-select:none;
+}
+
+/* ======== FOOTER ======== */
+.site-footer { background:#333; color:#fff; padding:1rem 0; margin-top:1.5rem; text-align:center; }
+
+/* ======== DARK MODE ======== */
+body.dark { background:#111; color:#eee; }
+body.dark .site-header { background:#222; }
+body.dark .menu-item { background:#333; color:#fff; box-shadow:none; }
+body.dark .site-footer { background:#000; }

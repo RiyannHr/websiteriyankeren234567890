@@ -1,308 +1,197 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Website Pemesanan Makanan Online</title>
   <style>
-    /* ======== RESET DASAR ======== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    /* ======== STYLE ======== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
       color: #333;
       background-color: #fafafa;
     }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
-    /* ======== CONTAINER ======== */
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    /* header */
+    .site-header { background: #ff7043; color: #fff; padding: 1rem 0; }
+    .header-inner { display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+    .brand { font-size:1.25rem; font-weight:bold; }
 
-    /* ======== HEADER ======== */
-    .site-header {
-      background: #ff7043;
-      color: #fff;
-      padding: 1rem 0;
-    }
+    /* forms & buttons */
+    .search-form { display:flex; gap:0.5rem; align-items:center; }
+    .input-search { padding:.5rem; width:260px; border-radius:6px; border:1px solid #ddd; }
+    .input { padding:.5rem; border-radius:6px; border:1px solid #ccc; }
+    .btn { padding:.5rem .9rem; border-radius:8px; border:none; cursor:pointer; font-weight:600; }
+    .btn-primary { background:#333; color:#fff; }
+    .btn-primary:hover { opacity:.95; }
 
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .main-nav ul {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .main-nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .main-nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* ======== BUTTONS ======== */
-    .btn {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-
-    .btn-primary {
-      background: #ff7043;
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: #e55b2d;
-    }
-
-    /* ======== INPUT ======== */
-    .input {
-      padding: 0.6rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      outline: none;
-      flex: 1;
-    }
-
-    .input:focus {
-      border-color: #ff7043;
-    }
-
-    .input-search {
-      min-width: 250px;
-    }
-
-    /* ======== CARD ======== */
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 1rem;
-      margin: 1rem 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .card-featured {
-      background: linear-gradient(135deg, #ff7043, #ff9d76);
-      color: #fff;
-      text-align: center;
-    }
-
-    .card-featured h2, 
-    .card-featured p {
-      color: #fff;
-    }
-
-    /* ======== FEATURES GRID ======== */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    /* ======== MENU ======== */
-    .menu-section {
-      margin: 2rem 0;
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.8rem;
-      list-style: none;
-      margin: 1rem 0;
-      padding: 0;
-    }
-
+    /* content */
+    main { padding:1.5rem 0; }
+    .menu-section h2 { margin-bottom:.75rem; }
+    .menu-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:.8rem; list-style:none; padding:0; }
     .menu-item {
-      background: #fff;
-      padding: 0.8rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      text-align: center;
-      font-weight: 500;
+      background:#fff; padding:.9rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.06);
+      cursor:pointer; user-select:none;
     }
 
-    /* ======== ORDER FORM ======== */
-    .order-form {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
+    /* footer */
+    .site-footer { background:#333; color:#fff; padding:1rem 0; margin-top:1.5rem; text-align:center; }
 
-    /* ======== FOOTER ======== */
-    .site-footer {
-      background: #333;
-      color: #fff;
-      padding: 2rem 0;
-      margin-top: 2rem;
-    }
-
-    .site-footer h3 {
-      margin-bottom: 1rem;
-    }
-
-    .site-footer ul {
-      list-style: none;
-    }
-
-    .site-footer a {
-      color: #ff9d76;
-      text-decoration: none;
-    }
-
-    .site-footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* ======== RESPONSIVE ======== */
-    @media (max-width: 768px) {
-      .header-inner {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-      }
-
-      .main-nav ul {
-        flex-direction: column;
-        gap: 0.8rem;
-      }
-
-      .order-form {
-        flex-direction: column;
-      }
-
-      .input-search {
-        min-width: 100%;
-      }
-    }
+    /* dark */
+    body.dark { background:#111; color:#eee; }
+    body.dark .site-header { background:#222; }
+    body.dark .menu-item { background:#333; color:#fff; box-shadow:none; }
+    body.dark .site-footer { background:#000; }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <h1 class="brand">Pemesanan Makanan Online</h1>
-      <nav class="main-nav" aria-label="Main navigation">
-        <ul>
-          <li><a href="#fitur">Fitur</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#cara-kerja">Cara Kerja</a></li>
-          <li><a href="#pesan">Siap Pesan</a></li>
-        </ul>
-      </nav>
+      <div style="display:flex; flex-direction:column;">
+        <div class="brand">Pemesanan Makanan Online</div>
+      </div>
+
+      <form id="searchForm" class="search-form" aria-label="Cari makanan">
+        <input id="searchInput" class="input-search" type="text" placeholder="Masukan nama makanan..." />
+        <button type="submit" class="btn btn-primary">Cari</button>
+      </form>
     </div>
   </header>
-    
-   <main class="container">
-    <section id="fitur" class="hero card card-featured">
-      <h2>Layanan pesan antar makanan</h2>
-      <p>Lihat menu, pilih makanan, dan bayar — kami antar cepat.</p>
 
-      <form class="search-form" onsubmit="return false;">
-        <input class="input input-search" type="text" placeholder="Masukan nama makanan..." aria-label="Cari makanan">
-        <button class="btn btn-primary">Cari</button>
-      </form>
-
-      <div class="features-grid">
-        <article class="card">
-          <h3>Waktu pengantaran</h3>
-          <p>Sekitar 15–30 menit tergantung wilayah.</p>
-        </article>
-        <article class="card">
-          <h3>Promo hari ini</h3>
-          <p>Diskon 25% untuk restoran pilihan.</p>
-        </article>
-        <article class="card">
-          <h3>Pembayaran</h3>
-          <p>Tunai, kartu dan dompet digital.</p>
-        </article>
+  <main class="container">
+    <section id="menu" class="menu-section">
+      <h2>Menu Pilihan</h2>
+      <div class="menu-grid" id="menuGrid">
+        <div class="menu-item">Nasi Goreng — Rp. 15.000</div>
+        <div class="menu-item">Burger Ayam — Rp. 15.000</div>
+        <div class="menu-item">Nasi Padang — Rp. 20.000</div>
+        <div class="menu-item">Mie Ayam — Rp. 15.000</div>
+        <div class="menu-item">Kebab Komplit — Rp. 30.000</div>
+        <div class="menu-item">Es Teh Solo — Rp. 5.000</div>
+        <div class="menu-item">Es Jeruk — Rp. 5.000</div>
       </div>
     </section>
-    
-    <section id="menu" class="menu-section">
-      <h2>Menu Pilihan Makanan</h2>
-      <ul class="menu-grid">
-        <li class="menu-item">Nasi Goreng — Rp. 15.000</li>
-        <li class="menu-item">Burger Ayam — Rp. 15.000</li>
-        <li class="menu-item">Nasi Padang — Rp. 20.000</li>
-        <li class="menu-item">Mie Ayam — Rp. 15.000</li>
-        <li class="menu-item">Kebab Komplit — Rp. 30.000</li>
-        <li class="menu-item">Nasi Uduk — Rp. 20.000</li>
-        <li class="menu-item">Nasi Bakar — Rp. 20.000</li>
-      </ul>
 
-      <h2>Menu Pilihan Minuman</h2>
-      <ul class="menu-grid">
-        <li class="menu-item">Es Teh Solo — Rp. 5.000</li>
-        <li class="menu-item">Es Jeruk — Rp. 5.000</li>
-        <li class="menu-item">Es Kelapa — Rp. 5.000</li>
-        <li class="menu-item">Es Krim — Rp. 10.000</li>
-        <li class="menu-item">Red Velvet — Rp. 10.000</li>
-        <li class="menu-item">Kopi Americano — Rp. 8.000</li>
-        <li class="menu-item">Es Kopi — Rp. 5.000</li>
-      </ul>
-    </section>
-    
-    <section id="cara-kerja">
-      <h2>Cara Kerja</h2>
-      <ol>
-        <li>Pilih makanan atau cari menu lain.</li>
-        <li>Tambahkan ke keranjang dan pilih metode pembayaran.</li>
-        <li>Driver menjemput dan mengantar ke alamat tujuan.</li>
-      </ol>
-    </section>
-
-    <section id="pesan" class="card">
-      <h2>Siap pesan sekarang?</h2>
-      <p>Pilih menu, masukkan alamat, dan kami kirim dalam waktu singkat.</p>
-      <form class="order-form" onsubmit="return false;">
-        <input class="input" type="text" placeholder="Masukan nama pesanan">
-        <button class="btn btn-primary">Mulai Pesan</button>
+    <section id="pesan" style="margin-top:1.25rem;">
+      <h2>Siap Pesan</h2>
+      <form id="orderForm" class="order-form" onsubmit="return false;" style="display:flex; gap:.5rem; align-items:center; flex-wrap:wrap;">
+        <input id="orderInput" class="input" type="text" placeholder="Masukan nama pesanan" aria-label="Pesanan" />
+        <button id="orderBtn" type="submit" class="btn btn-primary">Mulai Pesan</button>
       </form>
+      <p style="margin-top:.6rem; font-size:.95rem; color:#666;">(Klik item menu untuk otomatis mengisi form.)</p>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <h3>Referensi Desain Web</h3>
-      <ul>
-        <li><a href="https://dribbble.com/search/food" target="_blank" rel="noopener noreferrer">dribbble — food</a></li>
-        <li><a href="https://www.americanprimeco.com/" target="_blank" rel="noopener noreferrer">americanprimeco</a></li>
-        <li><a href="https://www.figma.com/community/tag/food" target="_blank" rel="noopener noreferrer">figma — food</a></li>
-        <li><a href="https://www.4rsmokehouse.com/menu/" target="_blank" rel="noopener noreferrer">4rsmokehouse — menu</a></li>
-      </ul>
+      <p>&copy; <span id="year"></span> Pemesanan Makanan Online</p>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // elemen
+      const searchForm = document.getElementById('searchForm');
+      const searchInput = document.getElementById('searchInput');
+      const menuItems = Array.from(document.querySelectorAll('.menu-item'));
+      const orderForm = document.getElementById('orderForm');
+      const orderInput = document.getElementById('orderInput');
+      const body = document.body;
+      const yearSpan = document.getElementById('year');
+
+      // tampilkan tahun sekarang
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+      // safety checks
+      if (!searchForm) console.error('ERROR: Elemen #searchForm tidak ditemukan.');
+      if (!searchInput) console.error('ERROR: Elemen #searchInput tidak ditemukan.');
+      if (!orderForm) console.error('ERROR: Elemen #orderForm tidak ditemukan.');
+      if (!orderInput) console.error('ERROR: Elemen #orderInput tidak ditemukan.');
+      if (menuItems.length === 0) console.warn('Peringatan: tidak ada .menu-item yang ditemukan.');
+
+      // Fitur: pencarian + highlight
+      if (searchForm && searchInput) {
+        searchForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const keyword = (searchInput.value || '').toLowerCase().trim();
+
+          // jika kosong -> hapus highlight
+          if (!keyword) {
+            menuItems.forEach(item => {
+              item.style.backgroundColor = '';
+              item.style.fontWeight = '';
+            });
+            return;
+          }
+
+          menuItems.forEach(item => {
+            const text = (item.textContent || '').toLowerCase();
+            if (text.includes(keyword)) {
+              item.style.backgroundColor = '#ffebcc';
+              item.style.fontWeight = '700';
+            } else {
+              item.style.backgroundColor = '';
+              item.style.fontWeight = '';
+            }
+          });
+        });
+
+        // optional: cari saat ketik Enter di input (jika ada perbedaan behavior)
+        searchInput.addEventListener('input', function () {
+          if (searchInput.value.trim() === '') {
+            menuItems.forEach(i => { i.style.backgroundColor = ''; i.style.fontWeight = ''; });
+          }
+        });
+      }
+
+      // Fitur: pesan (alert + clear)
+      if (orderForm && orderInput) {
+        orderForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const pesanan = (orderInput.value || '').trim();
+          if (!pesanan) {
+            alert('Masukkan nama pesanan terlebih dahulu!');
+            orderInput.focus();
+            return;
+          }
+          alert(`Pesanan "${pesanan}" telah ditambahkan. Driver segera mengantar!`);
+          orderInput.value = '';
+        });
+      }
+
+      // Fitur: klik menu untuk autofill order input
+      if (menuItems.length && orderInput) {
+        menuItems.forEach(item => {
+          item.addEventListener('click', function () {
+            // ambil nama sebelum '—' jika ada
+            const raw = item.textContent.trim();
+            const parts = raw.split('—');
+            const name = parts[0].trim();
+            orderInput.value = name;
+            orderInput.focus();
+          });
+        });
+      }
+
+      // Dark mode button (buat dan append)
+      const darkToggle = document.createElement('button');
+      darkToggle.type = 'button';
+      darkToggle.textContent = '🌙 Dark Mode';
+      darkToggle.className = 'btn btn-primary';
+      darkToggle.style.marginLeft = '.5rem';
+
+      // append ke header (jika ada)
+      const headerContainer = document.querySelector('.site-header .container');
+      if (headerContainer) headerContainer.appendChild(darkToggle);
+      darkToggle.addEventListener('click', function () {
+        body.classList.toggle('dark');
+        darkToggle.textContent = body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+      });
+    });
+  </script>
 </body>
 </html>
