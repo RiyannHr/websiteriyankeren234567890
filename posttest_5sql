@@ -1,0 +1,33 @@
+-- posttest4.sql
+DROP DATABASE IF EXISTS posttest4;
+CREATE DATABASE posttest4 CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE posttest4;
+
+-- Tabel pengguna (untuk login sederhana)
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+
+-- Tabel menu makanan/minuman
+CREATE TABLE menu (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nama VARCHAR(100) NOT NULL,
+  harga INT NOT NULL,
+  kategori VARCHAR(50),
+  deskripsi TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insert contoh user (admin)
+-- Username: admin
+-- Password: admin
+INSERT INTO users (username, password) VALUES ('admin', 'admin');
+
+-- Contoh data menu
+INSERT INTO menu (nama, harga, kategori, deskripsi) VALUES
+('Nasi Goreng Spesial', 25000, 'Makanan', 'Nasi goreng dengan telur dan ayam'),
+('Mie Ayam Bakso', 18000, 'Makanan', 'Mie ayam lengkap dengan bakso'),
+('Es Teh Manis', 5000, 'Minuman', 'Es teh dengan gula aren'),
+('Kopi Tubruk', 8000, 'Minuman', 'Kopi hitam khas rumah');

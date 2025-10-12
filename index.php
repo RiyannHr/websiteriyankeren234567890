@@ -1,58 +1,57 @@
 <?php
-session_start();
+// index.php
+include 'koneksi.php';
+$result = mysqli_query($conn, "SELECT * FROM menu ORDER BY created_at DESC");
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Halaman Utama</title>
+  <meta charset="utf-8">
+  <title>Warung Sederhana - Home</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <span class="brand">Sistem Pemesanan Makanan</span>
-      <nav>
-        <?php if (isset($_SESSION['username'])): ?>
-          <a href="dashboard.php" class="btn btn-primary">Dashboard</a>
-          <a href="logout.php" class="btn btn-primary">Logout</a>
-        <?php else: ?>
-          <a href="login.php" class="btn btn-primary">Login</a>
-        <?php endif; ?>
-      </nav>
+      <div class="brand">Warung Sederhana</div>
+      <div>
+        <a href="login.php" class="btn btn-primary">Login</a>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <h2>Selamat datang di Aplikasi Pemesanan!</h2>
-    <p>Gunakan fitur pencarian dan pemesanan yang tersedia di bawah ini.</p>
-    <hr style="margin:1rem 0;">
-    
-    <!-- form dan elemen dari script.js -->
-    <form id="searchForm" class="search-form">
-      <input type="text" id="searchInput" class="input-search" placeholder="Cari menu...">
-      <button type="submit" class="btn btn-primary">Cari</button>
-    </form>
-
     <section class="menu-section">
-      <h2>Daftar Menu</h2>
+      <h2>Menu</h2>
+      <form id="searchForm" class="search-form" onsubmit="return false;">
+        <input id="searchInput" class="input-search" placeholder="Cari menu..." />
+        <button class="btn btn-primary" onclick="document.getElementById('searchForm').dispatchEvent(new Event('submit'));">Cari</button>
+      </form>
+
       <ul class="menu-grid">
-        <li class="menu-item">Nasi Goreng — Rp15.000</li>
-        <li class="menu-item">Mie Ayam — Rp12.000</li>
-        <li class="menu-item">Sate Ayam — Rp20.000</li>
-        <li class="menu-item">Bakso — Rp13.000</li>
+        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+          <li class="menu-item">
+            <strong><?= htmlspecialchars($row['nama']) ?></strong> — Rp <?= number_format($row['harga'],0,',','.') ?><br>
+            <small><?= htmlspecialchars($row['kategori']) ?></small>
+            <p><?= htmlspecialchars($row['deskripsi']) ?></p>
+          </li>
+        <?php endwhile; ?>
       </ul>
     </section>
 
-    <hr style="margin:1rem 0;">
-    <form id="orderForm">
-      <input type="text" id="orderInput" class="input" placeholder="Masukkan nama menu...">
-      <button type="submit" class="btn btn-primary">Pesan</button>
-    </form>
+    <section style="margin-top:1.25rem;">
+      <h2>Pesan Sekarang</h2>
+      <form id="orderForm">
+        <input id="orderInput" class="input" placeholder="Nama menu yang ingin dipesan" />
+        <button class="btn btn-primary" type="submit">Pesan</button>
+      </form>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Sistem Pemesanan</p>
+    <div class="container">
+      &copy; <span id="year"></span> Warung Sederhana
+    </div>
   </footer>
 
   <script src="script.js"></script>
